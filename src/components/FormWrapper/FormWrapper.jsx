@@ -24,8 +24,8 @@ export const FormWrapper = (props) => {
     //     .then((json) => setUser(json.user));
     // };
 
-    for (const pair of data.entries()) {
-      console.log(pair[0] + `,` + pair[1]);
+    for (var pair of data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
     }
   };
 
