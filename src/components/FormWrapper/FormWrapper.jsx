@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { convertToObject } from "typescript";
 
 import { StyledInput, StyledLabel } from "../../styles/global";
 import Button from "../Button";
@@ -23,13 +24,9 @@ export const FormWrapper = (props) => {
     //     .then((json) => setUser(json.user));
     // };
 
-    // TODO: DRY this
-    const company = data.get("company");
-    const name = data.get("name");
-    const phone = data.get("phone");
-    const email = data.get("email");
-
-    console.log(`company: ${company}, name: ${name}, phone: ${phone}, email: ${email}`);
+    for (const pair of data.entries()) {
+      console.log(pair[0] + `,` + pair[1]);
+    }
   };
 
   return (
