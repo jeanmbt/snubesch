@@ -9,7 +9,7 @@ export const Banner = (props: IBannerProps) => {
   return (
     <StyledBanner>
       <div>FORM CONTENT</div>
-      <FormWrapper />
+      <FormWrapper user="user" />
       <div>INFO CONTENT</div>
     </StyledBanner>
   );

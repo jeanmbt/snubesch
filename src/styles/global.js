@@ -14,6 +14,7 @@ export const Centered = styled.div`
 `;
 
 export const StyledInput = styled.input`
+  width: 20em;
   margin: 0.5em;
   font-size: 1rem;
   padding: 0.65em;
@@ -24,4 +25,14 @@ export const StyledInput = styled.input`
     outline: none;
     border: 1px solid ${colors.button};
   }
+`;
+
+// responsive
+// display: flex;
+// justify-content: center;
+// align-items: start;
+// flex-direction: column;
+
+export const StyledLabel = styled.label`
+  padding: 0.65em;
 `;
