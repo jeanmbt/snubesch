@@ -1,3 +1,10 @@
 export const Header = () => {
-  return <div>header</div>;
+  // TODO: logo and links
+  return (
+    <div>
+      Header
+      <div>logo</div>
+      <div>links</div>
+    </div>
+  );
 };
