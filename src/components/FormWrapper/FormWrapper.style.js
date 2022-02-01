@@ -6,6 +6,7 @@ export const StyledFormWrapper = styled.div`
   margin: auto;
   padding: 2em;
   border-radius: 0.28em;
+  background-color: white;
   > * {
     display: flex;
     justify-content: center;

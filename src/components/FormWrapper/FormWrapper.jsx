@@ -45,7 +45,7 @@ export const FormWrapper = (props) => {
         </div>
         <div>
           <label htmlFor="Name">Name</label>
-          <StyledInput type="text" name="name" defaultValue={user.name} placeholder="Name" />
+          <StyledInput type="text" name="name" defaultValue={user.name} placeholder="Full name" />
           {/* {user.errors.name && <p>{user.errors.name}</p>} */}
         </div>
         <div>
@@ -55,7 +55,12 @@ export const FormWrapper = (props) => {
         </div>
         <div>
           <label htmlFor="Name">E-Mail</label>
-          <StyledInput type="email" name="email" defaultValue={user.email} placeholder="E-mail" />
+          <StyledInput
+            type="email"
+            name="email"
+            defaultValue={user.email}
+            placeholder="name@mail.com"
+          />
           {/* {user.errors.email && <p>{user.errors.email}</p>} */}
         </div>
         <FormButton style={buttonStyle} onSubmit={submit}>

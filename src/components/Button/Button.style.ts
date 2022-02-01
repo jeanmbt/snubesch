@@ -10,6 +10,9 @@ export const StyledButton = styled.button`
   background-color: ${colors.button};
   color: white;
   padding: 0.8em 4em;
+  &:hover {
+    background-color: ${colors.buttonHover}
+  }
 `
 
 export const FormButton = styled(StyledButton)`
