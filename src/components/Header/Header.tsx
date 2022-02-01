@@ -1,10 +1,5 @@
-export const Header = () => {
+import { IHeaderProps } from "../../types/Header.type";
+export const Header = (props: IHeaderProps) => {
   // TODO: logo and links
-  return (
-    <div>
-      Header
-      <div>logo</div>
-      <div>links</div>
-    </div>
-  );
+  return <div>{props.children} Header</div>;
 };
