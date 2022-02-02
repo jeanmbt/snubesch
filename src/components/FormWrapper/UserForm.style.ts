@@ -1,21 +1,22 @@
+
 import { Field } from "formik";
 import styled from "styled-components";
+import { colors } from "../../styles/global";
 
-export const colors = {
-  background: "#F9F9F9",
-  button: "#0099EE",
-  buttonHover: "#0073b3",
-  text: "#445566",
-  border: "#AABBCC",
-};
-
-export const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const FormWrapper = styled.div`
+  width: max-content;
+  border: 2px solid black;
+  margin: auto;
+  padding: 2em;
+  border-radius: 0.28em;
+  background-color: white;
+  > * {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+  }
 `;
-
-//TODO: put on right directory
 
 export const StyledInput = styled(Field)`
   width: 20em;
@@ -38,6 +39,7 @@ export const StyledInput = styled(Field)`
 // align-items: start;
 // flex-direction: column;
 
+
 export const StyledLabel = styled.label`
   padding: 0.65em;
 `;
@@ -45,4 +47,5 @@ export const StyledLabel = styled.label`
 export const StyledError = styled.p`
   color: red;
   font-size: small;
+  max-width: 26em;
 `;
