@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../styles/global";
+import { IButtonProps } from "../../types/Button.type";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<IButtonProps>`
   font-family: 'Roboto-Regular', sans-serif;
   font-weight: bold;
   outline: none;
@@ -10,12 +11,10 @@ export const StyledButton = styled.button`
   background-color: ${colors.button};
   color: white;
   padding: 0.8em 4em;
+  align-self: ${props => props.useCase === "formButton" ? "center" : ""};
+  margin-top: ${props => props.useCase === "formButton" ? "1em" : ""};
   &:hover {
     background-color: ${colors.buttonHover}
   }
 `
 
-export const FormButton = styled(StyledButton)`
-  align-self: center;
-  margin-top: 1em;
-`

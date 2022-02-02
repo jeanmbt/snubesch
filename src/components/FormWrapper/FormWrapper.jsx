@@ -1,19 +1,17 @@
 import { useState, useRef } from "react";
-import { convertToObject } from "typescript";
+
+import { withFormik, FormikProps } from "formik";
+import * as Yup from "yup";
 
 import { StyledInput, StyledLabel } from "../../styles/global";
-import Button from "../Button";
-import { FormButton } from "../Button/Button.style";
+
+import { FormButton, StyledButton } from "../Button/Button.style";
 import { StyledFormWrapper } from "./FormWrapper.style";
 
 export const FormWrapper = (props) => {
   const [user, setUser] = useState(props.user);
   const form = useRef(null);
-
-  const buttonStyle = {
-    marginTop: "1em",
-    alignSelf: "center",
-  };
+  const errors = {};
 
   const submit = (e) => {
     e.preventDefault();
@@ -40,17 +38,30 @@ export const FormWrapper = (props) => {
             name="company"
             defaultValue={user.company}
             placeholder="Company"
+            required
           />
-          {/* {user.errors.company && <p>{user.errors.company} </p>} */}
+          {/* {user.errors && <p>{user.errors} </p>} */}
         </div>
         <div>
           <label htmlFor="Name">Name</label>
-          <StyledInput type="text" name="name" defaultValue={user.name} placeholder="Full name" />
+          <StyledInput
+            type="text"
+            name="name"
+            defaultValue={user.name}
+            placeholder="Full name"
+            required
+          />
           {/* {user.errors.name && <p>{user.errors.name}</p>} */}
         </div>
         <div>
           <label htmlFor="Name">Phone</label>
-          <StyledInput type="tel" name="phone" defaultValue={user.phone} placeholder="+49" />
+          <StyledInput
+            type="tel"
+            name="phone"
+            defaultValue={user.phone}
+            placeholder="+49"
+            required
+          />
           {/* {user.errors.phone && <p>{user.errors.phone}</p>} */}
         </div>
         <div>
@@ -60,12 +71,13 @@ export const FormWrapper = (props) => {
             name="email"
             defaultValue={user.email}
             placeholder="name@mail.com"
+            required
           />
           {/* {user.errors.email && <p>{user.errors.email}</p>} */}
         </div>
-        <FormButton style={buttonStyle} onSubmit={submit}>
+        <StyledButton onSubmit={submit} useCase={"formButton"}>
           Get Informed
-        </FormButton>
+        </StyledButton>
       </form>
     </StyledFormWrapper>
   );
