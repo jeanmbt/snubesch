@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const colors = {
@@ -14,7 +15,7 @@ export const Centered = styled.div`
   align-items: center;
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(Field)`
   width: 20em;
   margin: 0.5em;
   font-size: 1rem;
