@@ -1,9 +1,7 @@
-import { useState, useRef } from "react";
-
-import { withFormik, FormikProps, Formik, FormikHelpers, Form, Field } from "formik";
+import { Formik, FormikHelpers, Form } from "formik";
 import * as Yup from "yup";
 
-import { Centered, StyledInput, StyledLabel } from "../../styles/global";
+import { StyledError, StyledInput, StyledLabel } from "../../styles/global";
 
 import { StyledButton } from "../Button/Button.style";
 import { StyledFormWrapper } from "./FormWrapper.style";
@@ -14,6 +12,16 @@ export interface FormValues {
   phone: string;
   email: string;
 }
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const FormSchema = Yup.object().shape({
+  company: Yup.string().min(2, "Too short!").max(80, "Too long").required("Required"),
+  name: Yup.string().min(2, "Too short!").max(50, "Too long").required("Required"),
+  phone: Yup.string().matches(phoneRegExp).required("Required"),
+  email: Yup.string().email("Invalid E-mail").required("Required"),
+});
 
 export const FormWrapper: React.FC<{}> = () => (
   <StyledFormWrapper>
@@ -30,36 +38,57 @@ export const FormWrapper: React.FC<{}> = () => (
           setSubmitting(false);
         }, 500);
       }}
+      validationSchema={FormSchema}
       render={({ touched, errors, values, handleBlur, handleChange, handleSubmit }) => (
         <Form>
           <div>
             <StyledLabel htmlFor="company">Company</StyledLabel>
             <StyledInput
+              value={values.company}
               id="company"
               name="company"
               placeholder="Company"
               type="text"
-              width={80}
-              required
+              border={touched.company && errors.company}
             ></StyledInput>
-            {errors.company && <p>{errors.company}</p>}
           </div>
+          <StyledError>{touched.company && errors.company && errors.company}</StyledError>
           <div>
-            <label htmlFor="Name">Name</label>
-            <StyledInput type="text" name="name" placeholder="Full name" required />
-            {/* {errors.name && <p>{errors.name}</p>} */}
+            <StyledLabel htmlFor="name">Name</StyledLabel>
+            <StyledInput
+              value={values.name}
+              type="text"
+              name="name"
+              placeholder="Full name"
+              border={touched.name && errors.name}
+            />
           </div>
+          <StyledError>{touched.name && errors.name && errors.name}</StyledError>
           <div>
-            <label htmlFor="Name">Phone</label>
-            <StyledInput type="tel" name="phone" placeholder="+49" required />
-            {/* {errors.phone && <p>{errors.phone}</p>} */}
+            <StyledLabel htmlFor="phone">Phone</StyledLabel>
+            <StyledInput
+              value={values.phone}
+              type="tel"
+              name="phone"
+              placeholder="+49"
+              border={touched.phone && errors.phone}
+            />
           </div>
+          <StyledError>{touched.phone && errors.phone && errors.phone}</StyledError>
           <div>
-            <label htmlFor="Name">E-Mail</label>
-            <StyledInput type="email" name="email" placeholder="name@mail.com" required />
-            {/* {errors.email && <p>{errors.email}</p>} */}
+            <StyledLabel htmlFor="email">E-Mail</StyledLabel>
+            <StyledInput
+              value={values.email}
+              type="email"
+              name="email"
+              placeholder="name@mail.com"
+              border={touched.email && errors.email}
+            />
           </div>
-          <StyledButton useCase={"formButton"}>Get Informed</StyledButton>
+          <StyledError>{touched.email && errors.email && errors.email}</StyledError>
+          <StyledButton useCase={"formButton"} type={"submit"}>
+            Get Informed
+          </StyledButton>
         </Form>
       )}
     ></Formik>

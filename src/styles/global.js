@@ -15,14 +15,16 @@ export const Centered = styled.div`
   align-items: center;
 `;
 
+//TODO: put on right directory
+
 export const StyledInput = styled(Field)`
   width: 20em;
-  margin: 0.5em;
+
   font-size: 1rem;
   padding: 0.65em;
   border-radius: 0.2em;
   outline: none;
-  border: 1px solid ${colors.border};
+  border: ${(props) => (props.border ? `1px solid red` : `1px solid ${colors.border}`)};
   background-color: white;
   &:focus {
     outline: none;
@@ -38,4 +40,9 @@ export const StyledInput = styled(Field)`
 
 export const StyledLabel = styled.label`
   padding: 0.65em;
+`;
+
+export const StyledError = styled.p`
+  color: red;
+  font-size: small;
 `;

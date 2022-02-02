@@ -8,9 +8,8 @@ export const Banner = (props: IBannerProps) => {
   // TODO: Form container, Info Container
   return (
     <StyledBanner>
-      <div>FORM CONTENT</div>
       <FormWrapper />
-      <div>INFO CONTENT</div>
+      {/* <div>INFO CONTENT</div> */}
     </StyledBanner>
   );
 };
