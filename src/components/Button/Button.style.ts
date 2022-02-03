@@ -11,8 +11,8 @@ export const StyledButton = styled.button<IButtonProps>`
   background-color: ${colors.button};
   color: white;
   padding: 0.8em 4em;
-  align-self: ${props => props.useCase === "formButton" ? "center" : ""};
-  margin-top: ${props => props.useCase === "formButton" ? "1em" : ""};
+  align-self: ${props => props.useCase === "formButton" && "center"};
+  margin-top: ${props => props.useCase === "formButton" && "1em"};
   &:hover {
     background-color: ${colors.buttonHover}
   }

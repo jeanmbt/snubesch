@@ -1,2 +1,2 @@
-import { FormWrapper } from "./FormWrapper"
-export default FormWrapper
+import { UserForm } from "./UserForm"
+export default UserForm
