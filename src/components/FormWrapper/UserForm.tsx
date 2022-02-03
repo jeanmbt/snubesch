@@ -1,15 +1,11 @@
 import { Formik, FormikHelpers, Form } from "formik";
 import * as Yup from "yup";
 
+import { regex } from "../../utils/regex";
 import { FormValues } from "../../types/Form.type";
 
 import { StyledButton } from "../Button/Button.style";
 import { FormWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
-
-const regex = {
-  company: /^[a-z A-Z]*$/i,
-  phone: /\(?\+?\d{1,4}?\)?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
-};
 
 const FormSchema = Yup.object().shape({
   company: Yup.string()

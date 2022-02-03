@@ -1,7 +1,5 @@
-import { Centered } from "../../styles/global";
 import { IBannerProps } from "../../types/Banner.type";
 import UserForm from "../FormWrapper";
-import FormWrapper from "../FormWrapper";
 
 import { StyledBanner } from "./Banner.style";
 
