@@ -1,8 +1,5 @@
 import { Formik, FormikHelpers, Form } from "formik";
 
-import { regex } from "../../utils/regex";
-import { useCurrentLocation } from "../../utils/useCurrentLocation";
-
 import { FormValues } from "../../types/Form.type";
 
 import { StyledButton } from "../Button/Button.style";
@@ -11,11 +8,17 @@ import { FormWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.s
 import Input, { getCountries, getCountryCallingCode } from "react-phone-number-input/input";
 import en from "react-phone-number-input/locale/en.json";
 import "react-phone-number-input/style.css";
-import { useEffect, useState } from "react";
-import { lookupCountry } from "../../utils/lookupCountry";
-import { FormSchema } from "../../utils/FormSchema";
 
-const CountrySelect = ({ value, onChange, labels, ...rest }: any) => (
+import { FormSchema } from "../../utils/FormSchema";
+import { useCurrentLocation } from "../../utils/useCurrentLocation";
+
+interface ICountrySelect {
+  value: string | undefined;
+  onChange: (event?: any | undefined) => void;
+  labels: any;
+  name: string;
+}
+const CountrySelect = ({ value, onChange, labels, ...rest }: ICountrySelect) => (
   <select {...rest} value={value} onChange={(event) => onChange(event.target.value || undefined)}>
     <option value="">{labels.ZZ}</option>
     {getCountries().map((country) => (
@@ -27,33 +30,7 @@ const CountrySelect = ({ value, onChange, labels, ...rest }: any) => (
 );
 
 export const UserForm: React.FC<{}> = () => {
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [country, setCountry] = useState();
-  const [error, setError] = useState("");
-  const [location, setLocation] = useState<any>([]);
-  // const { location, error } = useCurrentLocation();
-
-  async function handleNavigator(position: GeolocationPosition) {
-    const { latitude, longitude } = position.coords;
-
-    const userCountryCode = await lookupCountry({ latitude, longitude });
-
-    setCountry(userCountryCode);
-  }
-
-  const handleError = (error: GeolocationPositionError) => {
-    setError(error.message);
-    console.log(error.message);
-  };
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      setError("Geolocation not supported");
-    }
-
-    navigator.geolocation.getCurrentPosition(handleNavigator, handleError);
-  }, []);
-  // console.log(location);
+  const { country, setCountry } = useCurrentLocation();
 
   return (
     <FormWrapper>
@@ -74,7 +51,6 @@ export const UserForm: React.FC<{}> = () => {
         render={({ touched, errors, values, handleBlur, handleChange, handleSubmit }) => (
           <Form>
             {/* COMPANY */}
-
             <div>
               <StyledLabel htmlFor="company">Company</StyledLabel>
               <StyledInput

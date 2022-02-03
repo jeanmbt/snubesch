@@ -2,18 +2,16 @@ import { useEffect, useState } from "react";
 import { lookupCountry } from "./lookupCountry";
 
 export const useCurrentLocation = () => {
+  const [country, setCountry] = useState();
   const [error, setError] = useState("");
-  const [location, setLocation] = useState<any>([]);
 
-
-  const handleSucess = (position: GeolocationPosition) => {
+  async function handleNavigator(position: GeolocationPosition) {
     const { latitude, longitude } = position.coords;
 
-    setLocation({
-      latitude,
-      longitude,
-    });
-  };
+    const userCountryCode = await lookupCountry({ latitude, longitude });
+
+    setCountry(userCountryCode);
+  }
 
   const handleError = (error: GeolocationPositionError) => {
     setError(error.message);
@@ -24,10 +22,11 @@ export const useCurrentLocation = () => {
     if (!navigator.geolocation) {
       setError("Geolocation not supported");
     }
-    navigator.geolocation.getCurrentPosition(handleSucess, handleError);
+
+    navigator.geolocation.getCurrentPosition(handleNavigator, handleError);
   }, []);
 
-  return { location, error };
+  return {country, setCountry}
 };
 
 
