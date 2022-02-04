@@ -1,9 +1,9 @@
-import { useFormik, FormikHelpers } from "formik";
-// import PhoneInput from "react-phone-input-2";
+import { useFormik, FormikHelpers, validateYupSchema } from "formik";
+import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { FormValues } from "../../types/Form.type";
-// import { PhoneInput, PhoneNumber } from "react-phonenr-input";
-import { PhoneInput, IFormikUiPhoneInputProps } from "react-formik-ui";
+// import { PhoneInput as PhoneInputRPI } from "react-phonenr-input";
+// import { PhoneInput as PhoneInputUi } from "react-formik-ui";
 
 import { StyledButton } from "../Button/Button.style";
 import { FormWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
@@ -14,20 +14,28 @@ import React, { useRef, useState } from "react";
 
 import { default as countries } from "../../api/CountryCode.json";
 
-export const Select = () => {
-  const { country, setCountry } = useCurrentLocation();
-  const location = country;
+import { useField, Form, FormikProps, Formik } from "formik";
+import PhoneInputWithCountrySelect from "react-phone-number-input";
 
-  console.log("hi " + location);
+export const Select = (country: any) => {
+  const location = country;
+  const countriess = countries;
   console.log(countries);
 
-  const matchCountry = (location: string, countries: any) => {
-    countries.filter((country: { code: string }) => {
-      country.code.includes(location);
+  const matchCountry = (location: any, countries: any) => {
+    countriess.filter((country: { code: string }) => {
+      // console.log(country.code);
+      return country.code.includes(location.country);
     });
   };
 
-  matchCountry(location, countries);
+  const test = matchCountry(location.country, countries);
+
+  console.log(location);
+  console.log(location.country + " type: " + typeof location.country);
+  console.log("call matchCountry functon " + " " + matchCountry(location.country, countries));
+  console.log(test);
+
   return (
     <select defaultValue={"hi"}>
       {countries.map((country) => (
@@ -41,7 +49,11 @@ export const Select = () => {
 
 export const UserForm: React.FC<{}> = () => {
   const { country, setCountry } = useCurrentLocation();
-
+  const [company, setCompany] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [formData, setFormData] = useState("");
   // const [value, setValue] = useState<PhoneNumber>("");
 
   // const handleChange = (phoneNumber: PhoneNumber) => {
@@ -56,7 +68,6 @@ export const UserForm: React.FC<{}> = () => {
     email: "",
   };
 
-  console.log(country);
   const countryLowerCase = country?.toString().toLowerCase();
 
   const formik = useFormik({
@@ -64,6 +75,8 @@ export const UserForm: React.FC<{}> = () => {
     // validationSchema: FormSchema,
     onSubmit: (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
       console.log("hi");
+
+      console.log(phoneNumber);
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -81,7 +94,6 @@ export const UserForm: React.FC<{}> = () => {
             name="company"
             placeholder="Company"
             type="text"
-            // border={formik.touched.company && formik.errors.company}
           ></StyledInput>
         </div>
         <StyledError>
@@ -106,22 +118,26 @@ export const UserForm: React.FC<{}> = () => {
         {/* PHONE */}
         <div>
           <StyledLabel htmlFor="phone">Phone</StyledLabel>
-          <div>
-            <Select></Select>
-          </div>
+          <div>{/* <Select country={country} /> */}</div>
 
           {/* "react-phone-input-2 */}
+          <PhoneInput
+            onChange={(phone) => setPhoneNumber(phone)}
+            country={countryLowerCase}
+            value={formik.values.phone}
+            isValid={(value, country) => {
+              if (value.match(/12345/)) {
+                return "Invalid value: " + value + ", " + country;
+              } else if (value.match(/1234/)) {
+                return false;
+              } else {
+                return true;
+              }
+            }}
+            inputProps={{ name: "phone", placeholder: "Phone", id: "phone" }}
+          />
 
-          {/* <PhoneInput
-            // onChange={formik.handleChange}
-            // country={countryLowerCase}
-            // value={formik.values.phone}
-            // inputProps={{ name: "phone", placeholder: "Phone" }}
-            name="hi"
-          /> */}
-
-          {/* <PhoneInput name="phone" placeholder="Phone" onChange={handleChange} /> */}
-          <StyledInput
+          {/* <StyledInput
             onChange={formik.handleChange}
             value={formik.values.phone}
             type="tel"
@@ -130,7 +146,7 @@ export const UserForm: React.FC<{}> = () => {
             placeholder="Phone"
 
             // border={formik.touched.phone && formik.errors.phone}
-          />
+          /> */}
         </div>
         <StyledError>
           {formik.touched.phone && formik.errors.phone && formik.errors.phone}
