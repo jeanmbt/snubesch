@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { lookupCountry } from "./lookupCountry";
 
 export const useCurrentLocation = () => {
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState("");
   const [error, setError] = useState("");
 
   async function handleNavigator(position: GeolocationPosition) {

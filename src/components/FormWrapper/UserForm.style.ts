@@ -18,26 +18,19 @@ export const FormWrapper = styled.div`
   }
 `;
 
-export const StyledInput = styled(Field)`
+export const StyledInput = styled.input`
   width: 20em;
-
+  border: 1px solid ${colors.border};
   font-size: 1rem;
   padding: 0.65em;
   border-radius: 0.2em;
   outline: none;
-  border: ${(props) => (props.border ? `1px solid red` : `1px solid ${colors.border}`)};
   background-color: white;
   &:focus {
     outline: none;
     border: 1px solid ${colors.button};
   }
-`;
-
-// responsive
-// display: flex;
-// justify-content: center;
-// align-items: start;
-// flex-direction: column;
+  `;
 
 
 export const StyledLabel = styled.label`
