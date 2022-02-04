@@ -1,16 +1,17 @@
-import { Formik, FormikHelpers, Form } from "formik";
+import { Formik, FormikHelpers, Form, useFormikContext } from "formik";
 
 import { FormValues } from "../../types/Form.type";
 
 import { StyledButton } from "../Button/Button.style";
 import { FormWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
 
-import Input, { getCountries, getCountryCallingCode } from "react-phone-number-input/input";
+import PhoneInput, { getCountries, getCountryCallingCode } from "react-phone-number-input/input";
 import en from "react-phone-number-input/locale/en.json";
 import "react-phone-number-input/style.css";
 
 import { FormSchema } from "../../utils/FormSchema";
 import { useCurrentLocation } from "../../utils/useCurrentLocation";
+import { useRef } from "react";
 
 interface ICountrySelect {
   value: string | undefined;
@@ -18,31 +19,38 @@ interface ICountrySelect {
   labels: any;
   name: string;
 }
-const CountrySelect = ({ value, onChange, labels, ...rest }: ICountrySelect) => (
-  <select {...rest} value={value} onChange={(event) => onChange(event.target.value || undefined)}>
-    <option value="">{labels.ZZ}</option>
-    {getCountries().map((country) => (
-      <option key={country} value={country}>
-        {labels[country]} +{getCountryCallingCode(country)}
-      </option>
-    ))}
-  </select>
-);
+const CountrySelect = ({ value, onChange, labels, ...rest }: ICountrySelect) => {
+  return (
+    <select {...rest} value={value} onChange={(event) => onChange(event.target.value || undefined)}>
+      <option value="country">{labels.ZZ}</option>
+      {getCountries().map((country) => (
+        <option key={country} value={country}>
+          {labels[country]} +{getCountryCallingCode(country)}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export const UserForm: React.FC<{}> = () => {
   const { country, setCountry } = useCurrentLocation();
 
+  const formRef = useRef(null);
+
   return (
     <FormWrapper>
       <Formik
+        innerRef={formRef}
         initialValues={{
           company: "",
           name: "",
+          country: "",
           phone: "",
           email: "",
         }}
         onSubmit={(values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
           setTimeout(() => {
+            console.log("hi");
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 500);
@@ -80,12 +88,9 @@ export const UserForm: React.FC<{}> = () => {
             {/* PHONE */}
             <div>
               <StyledLabel htmlFor="phone">Phone</StyledLabel>
-              <CountrySelect
-                labels={en}
-                name="countrySelect"
-                onChange={setCountry}
-                value={country}
-              />
+              <CountrySelect labels={en} name="country" onChange={setCountry} value={country} />
+              {/* react-phone-number-input */}
+              <PhoneInput onChange={() => {}} />
               <StyledInput
                 value={values.phone}
                 type="tel"
