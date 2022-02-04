@@ -1,6 +1,6 @@
 
 export async function lookupCountry({ latitude, longitude }:any) {
-  // Prefix the env file with REACT_APP for react to find it
+
   const URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
 
   const locationData = await fetch(URL).then((res) => res.json());
@@ -9,7 +9,7 @@ export async function lookupCountry({ latitude, longitude }:any) {
 
   const [{ short_name }] = address_components;
   
-  return short_name;
+  return short_name; 
 
 }
 
