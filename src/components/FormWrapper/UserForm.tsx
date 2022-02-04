@@ -89,8 +89,7 @@ export const UserForm: React.FC<{}> = () => {
             <div>
               <StyledLabel htmlFor="phone">Phone</StyledLabel>
               <CountrySelect labels={en} name="country" onChange={setCountry} value={country} />
-              {/* react-phone-number-input */}
-              <PhoneInput onChange={() => {}} />
+
               <StyledInput
                 value={values.phone}
                 type="tel"
