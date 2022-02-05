@@ -1,5 +1,5 @@
 
-export async function lookupCountry({ latitude, longitude }:any) {
+export async function fetchCountry({ latitude, longitude }:any) {
 
   const URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
 
@@ -13,4 +13,4 @@ export async function lookupCountry({ latitude, longitude }:any) {
 
 }
 
-export default lookupCountry;
+export default fetchCountry;
