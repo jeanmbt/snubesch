@@ -34,7 +34,7 @@ export const Banner = (props: IBannerProps) => {
         />
       ) : (
         <UserForm
-          country={country}
+          country={country?.toString().toLowerCase()}
           submitted={submitted}
           setSubmitted={setSubmitted}
           setFormData={setFormData}
