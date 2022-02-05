@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { lookupCountry } from "./lookupCountry";
+import { fetchCountry } from "../api/fetchCountry";
 
 export const useCurrentLocation = () => {
   const [country, setCountry] = useState("");
@@ -9,7 +9,7 @@ export const useCurrentLocation = () => {
 
     const { latitude, longitude } = position.coords;
 
-    const userCountryCode = await lookupCountry({ latitude, longitude });
+    const userCountryCode = await fetchCountry({ latitude, longitude });
     setCountry(userCountryCode);
   }
 

@@ -8,10 +8,10 @@ import { StyledHome } from "./Home.style";
 export const Home = () => {
   return (
     <StyledHome>
-      <Header />
+      {/* <Header /> */}
       <Banner />
 
-      <Section sectionType="short-info" bkg="none">
+      {/* <Section sectionType="short-info" bkg="none">
         <Centered>short info</Centered>
       </Section>
 
@@ -23,7 +23,7 @@ export const Home = () => {
         <Centered>Testimonials</Centered>
       </Section>
 
-      <Footer />
+      <Footer /> */}
     </StyledHome>
   );
 };

@@ -4,19 +4,28 @@ import "react-phone-input-2/lib/style.css";
 import { FormValues } from "../../types/Form.type";
 
 import { StyledButton } from "../Button/Button.style";
-import { FormWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
+import { FormWrapper, PhoneWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
 
 import { FormSchema } from "../../utils/FormSchema";
-import { useCurrentLocation } from "../../utils/useCurrentLocation";
-import React, { useRef, useState } from "react";
 
-export const UserForm: React.FC<{}> = () => {
-  const { country, setCountry } = useCurrentLocation();
-  const [company, setCompany] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [formData, setFormData] = useState("");
+import React from "react";
+import { Centered } from "../../styles/global";
+// import { Country } from "react-phone-number-input";
+
+interface IUserForm {
+  country: string | undefined;
+  submitted: boolean | undefined;
+  setSubmitted: any;
+  setFormData: any;
+  setCompany: any;
+  setName: any;
+  setPhone: any;
+  setEmail: any;
+}
+export const UserForm = (props: IUserForm) => {
+  // const { country, setCountry } = useCurrentLocation();
+
+  const { country, setSubmitted, setFormData, setCompany, setName, setPhone, setEmail } = props;
 
   const initialValues = {
     company: "",
@@ -29,16 +38,20 @@ export const UserForm: React.FC<{}> = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema: FormSchema,
+    validationSchema: FormSchema,
     onSubmit: (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
-      setFormData(``);
-      console.log(phoneNumber);
-      alert(JSON.stringify(values, null, 2));
+      setFormData(
+        `▶ User Data: company: ${values.company}  name: ${formik.values.name} phone: ${formik.values.phone} email: ${formik.values.email}`
+      );
+      setCompany(values.company);
+      setName(values.name);
+      setPhone(values.phone);
+      setEmail(values.email);
+      setSubmitted(true);
     },
   });
 
-  const setPhone = (phone: string) => {
-    setPhoneNumber(phone);
+  const setPhoneOnChange = (phone: string) => {
     formik.values.phone = phone;
   };
 
@@ -55,7 +68,8 @@ export const UserForm: React.FC<{}> = () => {
             name="company"
             placeholder="Company"
             type="text"
-          ></StyledInput>
+            border={formik.touched.email && formik.errors.email}
+          />
         </div>
         <StyledError>
           {formik.touched.company && formik.errors.company && formik.errors.company}
@@ -71,19 +85,29 @@ export const UserForm: React.FC<{}> = () => {
             type="text"
             name="name"
             placeholder="Full name"
-            // border={formik.touched.name && formik.errors.name}
+            border={formik.touched.name && formik.errors.name}
           />
         </div>
         <StyledError>{formik.touched.name && formik.errors.name && formik.errors.name}</StyledError>
 
         {/* PHONE */}
-        <div>
-          <StyledLabel htmlFor="phone">Phone</StyledLabel>
-          <div>{/* <Select country={country} /> */}</div>
-
-          {/* "react-phone-input-2 */}
+        <StyledLabel htmlFor="phone">Phone</StyledLabel>
+        <PhoneWrapper border={formik.touched.name && formik.errors.name}>
+          {/* TODO: Make a separate component */}
           <PhoneInput
-            onChange={(phone) => setPhone(phone)}
+            onChange={(phone) =>
+              setPhoneOnChange(
+                `+${
+                  phone.substring(0, 2) +
+                  " " +
+                  phone.substring(2, 6) +
+                  " " +
+                  phone.substring(6, 10) +
+                  " " +
+                  phone.substring(10, phone.length)
+                }`
+              )
+            }
             country={countryLowerCase}
             value={formik.values.phone}
             isValid={(value, country) => {
@@ -95,20 +119,9 @@ export const UserForm: React.FC<{}> = () => {
                 return true;
               }
             }}
-            inputProps={{ name: "phone", placeholder: "Phone", id: "phone" }}
+            inputProps={{ name: "phone", placeholder: "+49", id: "phone" }}
           />
-
-          {/* <StyledInput
-            onChange={formik.handleChange}
-            value={formik.values.phone}
-            type="tel"
-            name="phone"
-            id="phone"
-            placeholder="Phone"
-
-            // border={formik.touched.phone && formik.errors.phone}
-          /> */}
-        </div>
+        </PhoneWrapper>
         <StyledError>
           {formik.touched.phone && formik.errors.phone && formik.errors.phone}
         </StyledError>
@@ -123,7 +136,7 @@ export const UserForm: React.FC<{}> = () => {
             name="email"
             id="email"
             placeholder="name@mail.com"
-            // border={formik.touched.email && formik.errors.email}
+            border={formik.touched.email && formik.errors.email}
           />
         </div>
         <StyledError>
