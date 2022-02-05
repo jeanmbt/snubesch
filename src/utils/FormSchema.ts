@@ -11,7 +11,7 @@ export const FormSchema = Yup.object().shape({
   name: Yup.string().min(2, "Too short!").max(50, "Too long").required("Required"),
   phone: Yup.string()
     .matches(regex.phone, {
-      message: "Must contain country code (ex: +49 xxxxxx)",
+      message: "Follow the format +49 xxxxxx",
       excludeEmptyString: true,
     })
     .max(20, "Too long")
