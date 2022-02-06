@@ -38,6 +38,7 @@ export const Banner = (props: IBannerProps) => {
           submitted={submitted}
           setSubmitted={setSubmitted}
           setFormData={setFormData}
+          formData={formData}
           setCompany={setCompany}
           setName={setName}
           setPhone={setPhone}

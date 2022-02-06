@@ -9,6 +9,7 @@ export  interface IUserForm {
   submitted: boolean | undefined;
   setSubmitted: any;
   setFormData: any;
+  formData: string;
   setCompany: any;
   setName: any;
   setPhone: any;

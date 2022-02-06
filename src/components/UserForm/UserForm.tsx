@@ -16,7 +16,8 @@ import { FormSchema } from "../../utils/FormSchema";
 import { colors, Stacked } from "../../styles/global";
 
 export const UserForm = (props: IUserForm) => {
-  const { country, setSubmitted, setFormData, setCompany, setName, setPhone, setEmail } = props;
+  const { country, setSubmitted, setFormData, formData, setCompany, setName, setPhone, setEmail } =
+    props;
 
   const countryLowerCase = country?.toString().toLowerCase();
 
@@ -32,8 +33,9 @@ export const UserForm = (props: IUserForm) => {
     validationSchema: FormSchema,
     onSubmit: (values: IFormValues, { setSubmitting }: FormikHelpers<IFormValues>) => {
       setFormData(
-        `▶ User Data: company: ${values.company}  name: ${formik.values.name} phone: ${formik.values.phone} email: ${formik.values.email}`
+        `▶▶ User Data: company: ${values.company}  name: ${formik.values.name} phone: ${formik.values.phone} email: ${formik.values.email}`
       );
+      localStorage.setItem("User data", formData);
       setCompany(values.company);
       setName(values.name);
       setPhone(values.phone);
