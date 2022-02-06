@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/snubesch/static/css/main.9c7cae08.css",
+    "main.js": "/snubesch/static/js/main.d1021d06.js",
+    "static/js/787.c2be60bc.chunk.js": "/snubesch/static/js/787.c2be60bc.chunk.js",
+    "index.html": "/snubesch/index.html",
+    "main.9c7cae08.css.map": "/snubesch/static/css/main.9c7cae08.css.map",
+    "main.d1021d06.js.map": "/snubesch/static/js/main.d1021d06.js.map",
+    "787.c2be60bc.chunk.js.map": "/snubesch/static/js/787.c2be60bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c7cae08.css",
+    "static/js/main.d1021d06.js"
+  ]
+}
