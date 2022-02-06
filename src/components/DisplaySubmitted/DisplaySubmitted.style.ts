@@ -55,6 +55,7 @@ export const DisplaySubmittedFlex = styled.div`
 export const Divider = styled.div`
   width: 80%;
   border: 1px solid ${colors.border};
+  margin: 0 1em; 
 `
 
 export const DisplaySubmittedRow = styled.div`

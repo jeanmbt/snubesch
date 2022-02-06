@@ -134,10 +134,10 @@ export const FormWrapper = styled.div<IFormWrapper>`
     }
   }
 `;
-export interface IStyledP {
+export interface IStyledParagraph {
   useCase?: string;
 }
-export const StyledP = styled.p<IStyledP>`
+export const StyledP = styled.p<IStyledParagraph>`
   text-align: center;
   @media(${device.mobile}) {
     display: ${(props) => (props.useCase === "displaySubmittedInfo"? `inline` : `none`)};
