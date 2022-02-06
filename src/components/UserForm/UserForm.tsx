@@ -9,7 +9,7 @@ import {
   StyledError,
   StyledInput,
   StyledLabel,
-  StyledP,
+  StyledParagraph,
 } from "./UserForm.style";
 import { FormSchema } from "../../utils/FormSchema";
 
@@ -53,7 +53,9 @@ export const UserForm = (props: IUserForm) => {
   return (
     <Stacked>
       <h3>Find inbound call centers for your company</h3>
-      <StyledP>Use our AI and Big Data driven call center sourcing solution</StyledP>
+      <StyledParagraph>
+        Use our AI and Big Data driven call center sourcing solution
+      </StyledParagraph>
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
           <InputWrapper>
@@ -152,9 +154,7 @@ export const UserForm = (props: IUserForm) => {
           </StyledError>
 
           {/* SUBMIT */}
-          <StyledButton useCase={"formButton"} type={"submit"}>
-            Get Informed
-          </StyledButton>
+          <StyledButton type={"submit"}>Get Informed</StyledButton>
         </form>
       </FormWrapper>
     </Stacked>

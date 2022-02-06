@@ -55,7 +55,8 @@ export const DisplaySubmittedFlex = styled.div`
 export const Divider = styled.div`
   width: 80%;
   border: 1px solid ${colors.border};
-  margin: 0 1em; 
+  margin: 2.2em 0; 
+  max-width: 500px;
 `
 
 export const DisplaySubmittedRow = styled.div`
@@ -63,10 +64,12 @@ export const DisplaySubmittedRow = styled.div`
   grid-template-columns: 30% 70%;
   grid-template-areas: "label content";
   min-width: 10rem;  
-  text-align: center;
+  text-align: left;
   @media(${device.mobile}) {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
   @media(${device.tablet}) {
     display: inline-grid;
