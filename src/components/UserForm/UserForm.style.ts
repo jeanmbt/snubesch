@@ -4,7 +4,6 @@ import { IFormWrapper, IStyledInput } from "../../types/Form.type";
 
   
 export const StyledLabel = styled.label`
-  
   color: ${colors.text};
   @media(${device.mobile}) {
     padding: 0.3em 0;
@@ -135,10 +134,12 @@ export const FormWrapper = styled.div<IFormWrapper>`
     }
   }
 `;
-
-export const StyledP = styled.p`
+export interface IStyledP {
+  useCase?: string;
+}
+export const StyledP = styled.p<IStyledP>`
   text-align: center;
   @media(${device.mobile}) {
-      display: none;
+      display: ${(props) => (props.useCase === "displaySubmittedInfo"? `` : `none`)};
     }
 `

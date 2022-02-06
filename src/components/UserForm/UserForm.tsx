@@ -87,12 +87,7 @@ export const UserForm = (props: IUserForm) => {
           <StyledError style={{ display: "none" }}>
             {formik.touched.name && formik.errors.name && formik.errors.name}
           </StyledError>
-          {/* PHONE PHONE PHONE */}
-          {/* PHONE PHONE PHONE */}
-          {/* PHONE PHONE PHONE */}
-          {/* PHONE PHONE PHONE */}
-          {/* PHONE PHONE PHONE */}
-          {/* PHONE PHONE PHONE */}
+
           <InputWrapper style={{}}>
             <StyledLabel style={{}} htmlFor="phone">
               Phone

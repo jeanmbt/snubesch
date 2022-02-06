@@ -5,12 +5,11 @@ export const StyledBanner = styled.div`
   background-image: none;
   margin: 0;
   padding: 0;
-  width: fit-content;
   @media(${device.mobile}) {
-    width: 100%;
+    width: 100vw;
   }
   @media(${device.tablet}) {
-    width: fit-content;
+    width: 100vw;
   }
   @media(${device.laptop}) {
     width: fit-content;

@@ -1,10 +1,12 @@
 import Button from "../Button";
+import { StyledP } from "../UserForm/UserForm.style";
 
 import {
   Content,
   DisplaySubmittedFlex,
   DisplaySubmittedRow,
   DisplaySubmittedWrapper,
+  Divider,
   Label,
 } from "./DisplaySubmitted.style";
 
@@ -22,10 +24,10 @@ export const DisplaySubmitted = (props: IDisplaySubmitted) => {
   return (
     <DisplaySubmittedWrapper>
       <h3>Thank you for your request!</h3>
-      <p style={{ width: "30em", textAlign: "center" }}>
+      <StyledP useCase="displaySubmittedInfo">
         You've taken the first step. Our experts will get in touch with you soon
-      </p>
-      <hr style={{ width: "80%" }} />
+      </StyledP>
+      <Divider />
 
       <DisplaySubmittedFlex>
         <DisplaySubmittedRow>
