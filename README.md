@@ -4,7 +4,7 @@ This project was created for Snubes coding challenge. It is important to notice 
 
 ## Technologies
 
-This project was developed with the following technologies:
+It was developed with the following technologies:
 
 - React
 - TypeScript
