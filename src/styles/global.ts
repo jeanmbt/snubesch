@@ -14,6 +14,11 @@ export const Centered = styled.div`
   align-items: center;
 `;
 
-
+export  const device = {
+  mobile: "min-width: 320px",
+  tablet: "min-width: 768px",
+  laptop: "min-width: 992px",
+  desktop: "min-width: 1200px"
+}
 
 

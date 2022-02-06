@@ -1,5 +1,6 @@
+import PhoneInput from "react-phone-input-2";
 import styled from "styled-components";
-import { colors } from "../../styles/global";
+import { colors, device } from "../../styles/global";
 import { IFormWrapper, IStyledInput } from "../../types/Form.type";
 
   
@@ -15,15 +16,46 @@ export const StyledError = styled.div`
   padding: 0 0.65em;
 `;
 
-export const PhoneWrapper = styled.div<IStyledInput>`
-
-`
 export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: none;
   padding: 0.4em;
+  & div.react-tel-input {
+    width: min(100%, 70rem);
+    border: 1px solid red;
+    & input.phoneInput {
+      border-radius: 0.2em !important;
+      font-size: 1rem !important;
+      height: 2.6em !important;
+    }
+    & div.phoneButtonInput  {
+
+    }
+  }
+  @media(${device.mobile}) {
+
+    flex-direction: column ;
+    padding: 0em;
+  }
+  @media(${device.tablet}) {
+    flex-direction: row ;
+
+    padding: 0.4em;
+  }
+  @media(${device.laptop}) {
+    flex-direction: row ;
+
+  }
+  @media(${device.desktop}) {
+    flex-direction: row ;
+
+  }
 `
 
 export const StyledInput = styled.input<IStyledInput>`
-  width: 20em;
+  
+  width: clamp(15rem, 25rem, 100%);
   border: 1px solid ${colors.border};
   font-size: 1rem;
   padding: 0.65em;
@@ -35,28 +67,70 @@ export const StyledInput = styled.input<IStyledInput>`
     outline: none;
     border: 1px solid ${colors.button};
   }
+  @media(${device.mobile}) {
+    
+  }
+  @media(${device.tablet}) {
+    
+  }
+  @media(${device.laptop}) {
+    
+  }
+  @media(${device.desktop}) {
+    
+  }
   `;
 
 export const FormWrapper = styled.div<IFormWrapper>`
-  width: max-content;
-  height: 15em;
+  background-color: crimson;
   border: 2px solid black;
-  margin: 2em;
+  /* margin: 2rem; */
   padding: 2em;
   border-radius: 0.28em;
-  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media(${device.mobile}) {
+    margin: 0;
+    padding: 0em;
+  }
+  @media(${device.tablet}) {
+    flex-direction: row ;
+
+    padding: 0.4em;
+  }
+  @media(${device.laptop}) {
+    flex-direction: row ;
+
+  }
+  @media(${device.desktop}) {
+    flex-direction: row ;
+
+  }
   form{
+    /* background-color: rebeccapurple; */
     display: flex;
     justify-content: center;
     align-items: end;
     flex-direction: column;
-    ${StyledLabel}{ align-self: flex-start;
+    @media(${device.mobile}) {
+      width: 100%;
+      align-items: flex-start;
     }
+    @media(${device.tablet}) {
+      align-items: end;
+    }
+    @media(${device.laptop}) {
+      align-items: end;
+    }
+    @media(${device.desktop}) {
+      align-items: end;
+    }
+    /* ${StyledLabel}{ align-self: flex-start;
+    }
+
     ${StyledInput}{
       align-self: flex-end;
-    }
-    ${InputWrapper}{
-      display: flex;
-    }
+    } */
   }
 `;

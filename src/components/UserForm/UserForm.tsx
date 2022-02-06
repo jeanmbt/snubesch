@@ -3,17 +3,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IFormValues, IUserForm } from "../../types/Form.type";
 import { StyledButton } from "../Button/Button.style";
-import {
-  FormWrapper,
-  InputWrapper,
-  PhoneWrapper,
-  StyledError,
-  StyledInput,
-  StyledLabel,
-} from "./UserForm.style";
+import { FormWrapper, InputWrapper, StyledError, StyledInput, StyledLabel } from "./UserForm.style";
 import { FormSchema } from "../../utils/FormSchema";
 
-import { Centered, colors } from "../../styles/global";
+import { colors } from "../../styles/global";
 
 export const UserForm = (props: IUserForm) => {
   const { country, setSubmitted, setFormData, setCompany, setName, setPhone, setEmail } = props;
@@ -51,9 +44,9 @@ export const UserForm = (props: IUserForm) => {
   const borderStyle = `1px solid ${colors.border}`;
 
   return (
-    <FormWrapper>
+    <FormWrapper className="FORM WRAPPER">
       <form onSubmit={formik.handleSubmit}>
-        <InputWrapper>
+        <InputWrapper className="INPUT WRAPPER">
           <StyledLabel htmlFor="company">Company</StyledLabel>
           <StyledInput
             onChange={formik.handleChange}
@@ -69,7 +62,7 @@ export const UserForm = (props: IUserForm) => {
           {formik.touched.company && formik.errors.company && formik.errors.company}
         </StyledError>
 
-        <InputWrapper>
+        <InputWrapper className="INPUT WRAPPER">
           <StyledLabel htmlFor="name">Name</StyledLabel>
           <StyledInput
             onChange={formik.handleChange}
@@ -84,52 +77,60 @@ export const UserForm = (props: IUserForm) => {
         <StyledError style={{ display: "none" }}>
           {formik.touched.name && formik.errors.name && formik.errors.name}
         </StyledError>
+        {/* PHONE PHONE PHONE */}
+        {/* PHONE PHONE PHONE */}
+        {/* PHONE PHONE PHONE */}
+        {/* PHONE PHONE PHONE */}
+        {/* PHONE PHONE PHONE */}
+        {/* PHONE PHONE PHONE */}
+        <InputWrapper style={{}}>
+          <StyledLabel style={{}} htmlFor="phone">
+            Phone
+          </StyledLabel>
 
-        <InputWrapper>
-          <StyledLabel htmlFor="phone">Phone</StyledLabel>
-          <PhoneWrapper>
-            {/* TODO: Make a separate component */}
-            <PhoneInput
-              inputStyle={{
-                border: `${fetchError ? "1px solid red" : borderStyle}`,
-                height: "2.9em",
-                width: "24.5em",
-                borderRadius: "0.2em",
-              }}
-              buttonStyle={{ border: `${fetchError ? "1px solid red" : borderStyle}` }}
-              onChange={(phone) =>
-                setPhoneOnChange(
-                  `+${
-                    phone.substring(0, 2) +
-                    " " +
-                    phone.substring(2, 6) +
-                    " " +
-                    phone.substring(6, 10) +
-                    " " +
-                    phone.substring(10, phone.length)
-                  }`
-                )
+          <PhoneInput
+            inputStyle={{
+              border: `${fetchError ? "1px solid red" : borderStyle}`,
+            }}
+            inputClass="phoneInput"
+            buttonClass="phoneButtonInput"
+            buttonStyle={{
+              fontSize: "1rem",
+              border: `${fetchError ? "1px solid red" : borderStyle}`,
+            }}
+            onChange={(phone) =>
+              setPhoneOnChange(
+                `+${
+                  phone.substring(0, 2) +
+                  " " +
+                  phone.substring(2, 6) +
+                  " " +
+                  phone.substring(6, 10) +
+                  " " +
+                  phone.substring(10, phone.length)
+                }`
+              )
+            }
+            country={countryLowerCase}
+            value={formik.values.phone}
+            isValid={(value, country) => {
+              if (value.match(/12345/)) {
+                return "Invalid value: " + value + ", " + country;
+              } else if (value.match(/1234/)) {
+                return false;
+              } else {
+                return true;
               }
-              country={countryLowerCase}
-              value={formik.values.phone}
-              isValid={(value, country) => {
-                if (value.match(/12345/)) {
-                  return "Invalid value: " + value + ", " + country;
-                } else if (value.match(/1234/)) {
-                  return false;
-                } else {
-                  return true;
-                }
-              }}
-              inputProps={{ name: "phone", placeholder: "+49", id: "phone" }}
-            />
-          </PhoneWrapper>
+            }}
+            inputProps={{ name: "phone", placeholder: "+49", id: "phone" }}
+          />
+
           <StyledError style={{ display: "none" }}>
             {formik.touched.phone && formik.errors.phone && formik.errors.phone}
           </StyledError>
         </InputWrapper>
 
-        <InputWrapper>
+        <InputWrapper className="INPUT WRAPPER">
           <StyledLabel htmlFor="email">E-Mail</StyledLabel>
           <StyledInput
             onChange={formik.handleChange}
