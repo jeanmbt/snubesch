@@ -9,14 +9,15 @@ import {
   StyledError,
   StyledInput,
   StyledLabel,
-  StyledP,
+  StyledParagraph,
 } from "./UserForm.style";
 import { FormSchema } from "../../utils/FormSchema";
 
 import { colors, Stacked } from "../../styles/global";
 
 export const UserForm = (props: IUserForm) => {
-  const { country, setSubmitted, setFormData, setCompany, setName, setPhone, setEmail } = props;
+  const { country, setSubmitted, setFormData, formData, setCompany, setName, setPhone, setEmail } =
+    props;
 
   const countryLowerCase = country?.toString().toLowerCase();
 
@@ -32,8 +33,9 @@ export const UserForm = (props: IUserForm) => {
     validationSchema: FormSchema,
     onSubmit: (values: IFormValues, { setSubmitting }: FormikHelpers<IFormValues>) => {
       setFormData(
-        `▶ User Data: company: ${values.company}  name: ${formik.values.name} phone: ${formik.values.phone} email: ${formik.values.email}`
+        `▶▶ User Data: company: ${values.company}  name: ${formik.values.name} phone: ${formik.values.phone} email: ${formik.values.email}`
       );
+      localStorage.setItem("User data", formData);
       setCompany(values.company);
       setName(values.name);
       setPhone(values.phone);
@@ -53,7 +55,9 @@ export const UserForm = (props: IUserForm) => {
   return (
     <Stacked>
       <h3>Find inbound call centers for your company</h3>
-      <StyledP>Use our AI and Big Data driven call center sourcing solution</StyledP>
+      <StyledParagraph>
+        Use our AI and Big Data driven call center sourcing solution
+      </StyledParagraph>
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
           <InputWrapper>
@@ -152,9 +156,7 @@ export const UserForm = (props: IUserForm) => {
           </StyledError>
 
           {/* SUBMIT */}
-          <StyledButton useCase={"formButton"} type={"submit"}>
-            Get Informed
-          </StyledButton>
+          <StyledButton type={"submit"}>Get Informed</StyledButton>
         </form>
       </FormWrapper>
     </Stacked>

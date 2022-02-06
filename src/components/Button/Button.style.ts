@@ -12,8 +12,8 @@ margin-bottom: 1em;
   background-color: ${colors.button};
   color: white;
   padding: 0.8em 4em;
-  align-self: ${props => props.useCase === "formButton" && "center"};
-  margin-top: ${props => props.useCase === "formButton" && "1em"};
+  align-self: center;
+  margin-top: 1em;
   &:hover {
     background-color: ${colors.buttonHover}
   }

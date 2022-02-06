@@ -1,5 +1,4 @@
-import Button from "../Button";
-import { StyledP } from "../UserForm/UserForm.style";
+import { StyledParagraph } from "../UserForm/UserForm.style";
 
 import {
   Content,
@@ -24,9 +23,9 @@ export const DisplaySubmitted = (props: IDisplaySubmitted) => {
   return (
     <DisplaySubmittedWrapper>
       <h3>Thank you for your request!</h3>
-      <StyledP useCase="displaySubmittedInfo">
+      <StyledParagraph useCase="displaySubmittedInfo">
         You've taken the first step. Our experts will get in touch with you soon
-      </StyledP>
+      </StyledParagraph>
       <Divider />
 
       <DisplaySubmittedFlex>
