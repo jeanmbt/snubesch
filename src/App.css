@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-size: 1.3125rem;
+  background-color: aqua;
 }
 
 .App-link {

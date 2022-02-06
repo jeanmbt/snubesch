@@ -3,6 +3,7 @@ import { colors } from "../../styles/global";
 import { IButtonProps } from "../../types/Button.type";
 
 export const StyledButton = styled.button<IButtonProps>`
+margin-bottom: 1em;
   font-family: 'Roboto-Regular', sans-serif;
   font-weight: bold;
   outline: none;

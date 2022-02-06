@@ -6,14 +6,14 @@ import { StyledButton } from "../Button/Button.style";
 import {
   FormWrapper,
   InputWrapper,
-  PhoneWrapper,
   StyledError,
   StyledInput,
   StyledLabel,
+  StyledP,
 } from "./UserForm.style";
 import { FormSchema } from "../../utils/FormSchema";
 
-import { Centered, colors } from "../../styles/global";
+import { colors, Stacked } from "../../styles/global";
 
 export const UserForm = (props: IUserForm) => {
   const { country, setSubmitted, setFormData, setCompany, setName, setPhone, setEmail } = props;
@@ -51,52 +51,58 @@ export const UserForm = (props: IUserForm) => {
   const borderStyle = `1px solid ${colors.border}`;
 
   return (
-    <FormWrapper>
-      <form onSubmit={formik.handleSubmit}>
-        <InputWrapper>
-          <StyledLabel htmlFor="company">Company</StyledLabel>
-          <StyledInput
-            onChange={formik.handleChange}
-            value={formik.values.company}
-            id="company"
-            name="company"
-            placeholder="Company"
-            type="text"
-            border={formik.touched.email && formik.errors.email}
-          />
-        </InputWrapper>
-        <StyledError style={{ display: "none" }}>
-          {formik.touched.company && formik.errors.company && formik.errors.company}
-        </StyledError>
+    <Stacked>
+      <h3>Find inbound call centers for your company</h3>
+      <StyledP>Use our AI and Big Data driven call center sourcing solution</StyledP>
+      <FormWrapper>
+        <form onSubmit={formik.handleSubmit}>
+          <InputWrapper>
+            <StyledLabel htmlFor="company">Company</StyledLabel>
+            <StyledInput
+              onChange={formik.handleChange}
+              value={formik.values.company}
+              id="company"
+              name="company"
+              placeholder="Company"
+              type="text"
+              border={formik.touched.email && formik.errors.email}
+            />
+          </InputWrapper>
+          <StyledError style={{ display: "none" }}>
+            {formik.touched.company && formik.errors.company && formik.errors.company}
+          </StyledError>
 
-        <InputWrapper>
-          <StyledLabel htmlFor="name">Name</StyledLabel>
-          <StyledInput
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Full name"
-            border={formik.touched.name && formik.errors.name}
-          />
-        </InputWrapper>
-        <StyledError style={{ display: "none" }}>
-          {formik.touched.name && formik.errors.name && formik.errors.name}
-        </StyledError>
+          <InputWrapper>
+            <StyledLabel htmlFor="name">Name</StyledLabel>
+            <StyledInput
+              onChange={formik.handleChange}
+              value={formik.values.name}
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Full name"
+              border={formik.touched.name && formik.errors.name}
+            />
+          </InputWrapper>
+          <StyledError style={{ display: "none" }}>
+            {formik.touched.name && formik.errors.name && formik.errors.name}
+          </StyledError>
 
-        <InputWrapper>
-          <StyledLabel htmlFor="phone">Phone</StyledLabel>
-          <PhoneWrapper>
-            {/* TODO: Make a separate component */}
+          <InputWrapper style={{}}>
+            <StyledLabel style={{}} htmlFor="phone">
+              Phone
+            </StyledLabel>
+
             <PhoneInput
               inputStyle={{
                 border: `${fetchError ? "1px solid red" : borderStyle}`,
-                height: "2.9em",
-                width: "24.5em",
-                borderRadius: "0.2em",
               }}
-              buttonStyle={{ border: `${fetchError ? "1px solid red" : borderStyle}` }}
+              inputClass="phoneInput"
+              buttonClass="phoneButtonInput"
+              buttonStyle={{
+                fontSize: "1rem",
+                border: `${fetchError ? "1px solid red" : borderStyle}`,
+              }}
               onChange={(phone) =>
                 setPhoneOnChange(
                   `+${
@@ -123,33 +129,34 @@ export const UserForm = (props: IUserForm) => {
               }}
               inputProps={{ name: "phone", placeholder: "+49", id: "phone" }}
             />
-          </PhoneWrapper>
+
+            <StyledError style={{ display: "none" }}>
+              {formik.touched.phone && formik.errors.phone && formik.errors.phone}
+            </StyledError>
+          </InputWrapper>
+
+          <InputWrapper>
+            <StyledLabel htmlFor="email">E-Mail</StyledLabel>
+            <StyledInput
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              type="email"
+              name="email"
+              id="email"
+              placeholder="name@mail.com"
+              border={formik.touched.email && formik.errors.email}
+            />
+          </InputWrapper>
           <StyledError style={{ display: "none" }}>
-            {formik.touched.phone && formik.errors.phone && formik.errors.phone}
+            {formik.touched.email && formik.errors.email && formik.errors.email}
           </StyledError>
-        </InputWrapper>
 
-        <InputWrapper>
-          <StyledLabel htmlFor="email">E-Mail</StyledLabel>
-          <StyledInput
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            type="email"
-            name="email"
-            id="email"
-            placeholder="name@mail.com"
-            border={formik.touched.email && formik.errors.email}
-          />
-        </InputWrapper>
-        <StyledError style={{ display: "none" }}>
-          {formik.touched.email && formik.errors.email && formik.errors.email}
-        </StyledError>
-
-        {/* SUBMIT */}
-        <StyledButton useCase={"formButton"} type={"submit"}>
-          Get Informed
-        </StyledButton>
-      </form>
-    </FormWrapper>
+          {/* SUBMIT */}
+          <StyledButton useCase={"formButton"} type={"submit"}>
+            Get Informed
+          </StyledButton>
+        </form>
+      </FormWrapper>
+    </Stacked>
   );
 };
