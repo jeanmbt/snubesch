@@ -1,11 +1,24 @@
-import PhoneInput from "react-phone-input-2";
 import styled from "styled-components";
 import { colors, device } from "../../styles/global";
 import { IFormWrapper, IStyledInput } from "../../types/Form.type";
 
   
 export const StyledLabel = styled.label`
-  padding: 0.65em;
+  
+  color: ${colors.text};
+  @media(${device.mobile}) {
+    padding: 0.3em 0;
+  }
+  @media(${device.tablet}) {
+    flex-direction: row ;
+    padding: 0.4em;
+  }
+  @media(${device.laptop}) {
+    flex-direction: row ;
+  }
+  @media(${device.desktop}) {
+    flex-direction: row ;
+  }
 `;
 
 export const StyledError = styled.div`
@@ -21,9 +34,10 @@ export const InputWrapper = styled.div`
   flex-direction: row;
   border: none;
   padding: 0.4em;
+  margin-bottom: 0.65rem;
   @media(${device.mobile}) {
     flex-direction: column ;
-    padding: 0em 0.4em;
+    padding: 0em  0em;
   }
   @media(${device.tablet}) {
     flex-direction: row ;
@@ -36,24 +50,16 @@ export const InputWrapper = styled.div`
     flex-direction: row ;
   }
   & div.react-tel-input {
-    width: min(123%, 70rem);
-
     & input.phoneInput {
       border-radius: 0.2em !important;
       font-size: 1rem !important;
       height: 2.6em !important; 
-      width: 12rem  !important;
+      width: 14.4rem;
       @media(${device.mobile}) {
-        width: 16.5rem  !important;
+        width: 19.2rem;
       }
-      @media(${device.tablet}) {
-        width: 12rem  !important;
-      }
-      @media(${device.laptop}) {
-        width: 12rem  !important;
-      }
-      @media(${device.desktop}) {
-        width: 12rem  !important;
+      @media(${device.mobileL}) {
+        width: 17.4rem;
       }
     }
     & div.phoneButtonInput  {
@@ -62,8 +68,7 @@ export const InputWrapper = styled.div`
 `
 
 export const StyledInput = styled.input<IStyledInput>`
-  
-  width: clamp(15rem, 25rem, 100%);
+  width: 13rem;
   border: 1px solid ${colors.border};
   font-size: 1rem;
   padding: 0.65em;
@@ -76,23 +81,14 @@ export const StyledInput = styled.input<IStyledInput>`
     border: 1px solid ${colors.button};
   }
   @media(${device.mobile}) {
-    
+    width: 17.8rem;
   }
-  @media(${device.tablet}) {
-    
-  }
-  @media(${device.laptop}) {
-    
-  }
-  @media(${device.desktop}) {
-    
+  @media(${device.mobileL}) {
+    width: 16rem;
   }
   `;
 
 export const FormWrapper = styled.div<IFormWrapper>`
-  background-color: crimson;
-  border: 2px solid black;
-  /* margin: 2rem; */
   padding: 2em;
   border-radius: 0.28em;
   display: flex;
@@ -101,28 +97,31 @@ export const FormWrapper = styled.div<IFormWrapper>`
   @media(${device.mobile}) {
     margin: 0;
     padding: 0em;
+    width: 100%;
+  }
+  @media(${device.mobileL}) {
+    margin: 0;
+    padding: 0em;
+    width: 100%;
   }
   @media(${device.tablet}) {
     flex-direction: row ;
-
     padding: 0.4em;
+
   }
   @media(${device.laptop}) {
     flex-direction: row ;
-
   }
   @media(${device.desktop}) {
     flex-direction: row ;
-
   }
   form{
-    /* background-color: rebeccapurple; */
     display: flex;
     justify-content: center;
     align-items: end;
     flex-direction: column;
+
     @media(${device.mobile}) {
-      width: 100%;
       align-items: flex-start;
     }
     @media(${device.tablet}) {
@@ -134,11 +133,12 @@ export const FormWrapper = styled.div<IFormWrapper>`
     @media(${device.desktop}) {
       align-items: end;
     }
-    /* ${StyledLabel}{ align-self: flex-start;
-    }
-
-    ${StyledInput}{
-      align-self: flex-end;
-    } */
   }
 `;
+
+export const StyledP = styled.p`
+  text-align: center;
+  @media(${device.mobile}) {
+      display: none;
+    }
+`

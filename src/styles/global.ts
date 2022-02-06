@@ -14,8 +14,16 @@ export const Centered = styled.div`
   align-items: center;
 `;
 
+export const Stacked = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
 export  const device = {
   mobile: "min-width: 320px",
+  mobileL: "min-width: 480px",
   tablet: "min-width: 768px",
   laptop: "min-width: 992px",
   desktop: "min-width: 1200px"

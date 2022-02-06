@@ -7,16 +7,3 @@
 .App-link {
   color: #61dafb;
 }
-
-:root {
-  font-size: 1.3125rem;
-  background-color: pink;
-}
-
-@media (min-width: 320) {
-  .phoneInput {
-    border: 3px solid red;
-    align-self: end;
-    margin-left: -2.55em;
-  }
-}
