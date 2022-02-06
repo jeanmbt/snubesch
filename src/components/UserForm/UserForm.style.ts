@@ -21,35 +21,43 @@ export const InputWrapper = styled.div`
   flex-direction: row;
   border: none;
   padding: 0.4em;
-  & div.react-tel-input {
-    width: min(100%, 70rem);
-    border: 1px solid red;
-    & input.phoneInput {
-      border-radius: 0.2em !important;
-      font-size: 1rem !important;
-      height: 2.6em !important;
-    }
-    & div.phoneButtonInput  {
-
-    }
-  }
   @media(${device.mobile}) {
-
     flex-direction: column ;
-    padding: 0em;
+    padding: 0em 0.4em;
   }
   @media(${device.tablet}) {
     flex-direction: row ;
-
     padding: 0.4em;
   }
   @media(${device.laptop}) {
     flex-direction: row ;
-
   }
   @media(${device.desktop}) {
     flex-direction: row ;
+  }
+  & div.react-tel-input {
+    width: min(123%, 70rem);
 
+    & input.phoneInput {
+      border-radius: 0.2em !important;
+      font-size: 1rem !important;
+      height: 2.6em !important; 
+      width: 12rem  !important;
+      @media(${device.mobile}) {
+        width: 16.5rem  !important;
+      }
+      @media(${device.tablet}) {
+        width: 12rem  !important;
+      }
+      @media(${device.laptop}) {
+        width: 12rem  !important;
+      }
+      @media(${device.desktop}) {
+        width: 12rem  !important;
+      }
+    }
+    & div.phoneButtonInput  {
+    }
   }
 `
 

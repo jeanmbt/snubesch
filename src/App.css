@@ -13,9 +13,6 @@
   background-color: pink;
 }
 
-.phoneInput {
-}
-
 @media (min-width: 320) {
   .phoneInput {
     border: 3px solid red;
