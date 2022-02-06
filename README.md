@@ -1,6 +1,6 @@
 # Snubes coding challenge
 
-This project was created for Snubes coding challenge. It is important to notice that it depends on the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start). Check "Using your Google Geocoding API key" in the following documentation for instructions.
+This project was created for Snubes coding challenge. It is important to notice that it depends on the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start). Check ["Using your Google Geocoding API key"](#api) in the following documentation for instructions.
 
 ## Technologies
 
@@ -13,7 +13,9 @@ It was developed with the following technologies:
 - Formik
 
 
+
 ### Installing
+
 
 **Cloning the Repository**
 
@@ -22,11 +24,13 @@ git clone https://github.com/jeanmbt/snubesch.git
 cd snubesch
 ```
 
+
 **Installing dependencies**
 
 ```
 npm install
 ```
+<a name="api"></a>
 
 **Using your Google Geocoding API key**
 
@@ -37,6 +41,8 @@ echo REACT_APP_MAPS_API_KEY={your api key} >> .env
 ```
 
 [API key step-by-step](https://developers.google.com/maps/documentation/geocoding/get-api-key)
+
+
 
 ### Running the Application locally
 
