@@ -140,6 +140,9 @@ export interface IStyledP {
 export const StyledP = styled.p<IStyledP>`
   text-align: center;
   @media(${device.mobile}) {
-      display: ${(props) => (props.useCase === "displaySubmittedInfo"? `` : `none`)};
-    }
+    display: ${(props) => (props.useCase === "displaySubmittedInfo"? `inline` : `none`)};
+  }
+  @media(${device.tablet}) {
+    display: inline;
+  }
 `
